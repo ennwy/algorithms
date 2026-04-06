@@ -1,23 +1,21 @@
 class FreqStack:
     def __init__(self):
         self.nums = defaultdict(int)
-        self.freq = [[], []]
+        self.freq = []
 
     def push(self, val: int) -> None:
         self.nums[val] += 1
 
-        f = self.nums[val]
-
-        while len(self.freq) <= f:
+        if self.nums[val] > len(self.freq):
             self.freq.append([])
         
-        self.freq[f].append(val)
+        self.freq[self.nums[val]-1].append(val)
 
     def pop(self) -> int:
         val = self.freq[-1].pop()
         self.nums[val] -= 1
 
-        while self.freq and not self.freq[-1]:
+        if not self.freq[-1]:
             self.freq.pop()
         
         return val
