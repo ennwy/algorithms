@@ -2,13 +2,11 @@ class FreqStack:
     def __init__(self):
         self.nums = defaultdict(int)
         self.freq = [[], []]
-        self.maxf = 0
 
     def push(self, val: int) -> None:
         self.nums[val] += 1
 
         f = self.nums[val]
-        self.maxf = max(self.maxf, f)
 
         while len(self.freq) <= f:
             self.freq.append([])
@@ -21,8 +19,6 @@ class FreqStack:
 
         while self.freq and not self.freq[-1]:
             self.freq.pop()
-
-        maxf = len(self.freq)
         
         return val
 
