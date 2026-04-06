@@ -6,10 +6,11 @@ class FreqStack:
     def push(self, val: int) -> None:
         self.nums[val] += 1
 
+        currf = self.nums[val]
         if self.nums[val] > len(self.freq):
             self.freq.append([])
         
-        self.freq[self.nums[val]-1].append(val)
+        self.freq[currf - 1].append(val)
 
     def pop(self) -> int:
         val = self.freq[-1].pop()
