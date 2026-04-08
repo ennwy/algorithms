@@ -3,7 +3,6 @@ class Solution:
         ps = sorted(zip(position, speed))[::-1]
         fleets = 0
         prev_t = float('-inf')
-        print(ps)
 
         for p, s in ps:
             t = (target - p) / s
