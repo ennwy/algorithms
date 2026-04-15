@@ -10,7 +10,6 @@ class Solution:
             m = l + (r - l) // 2
 
             if isBadVersion(m):
-                res = m
                 r = m - 1
             else:
                 l = m + 1
