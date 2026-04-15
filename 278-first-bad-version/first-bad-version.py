@@ -5,7 +5,6 @@ class Solution:
     def firstBadVersion(self, n: int) -> int:
         l = 1
         r = n
-        res = n
 
         while l <= r:
             m = l + (r - l) // 2
@@ -17,4 +16,4 @@ class Solution:
                 l = m + 1
             
 
-        return res
+        return l
