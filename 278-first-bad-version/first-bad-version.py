@@ -13,6 +13,5 @@ class Solution:
                 r = m
             else:
                 l = m + 1
-            
 
         return l
