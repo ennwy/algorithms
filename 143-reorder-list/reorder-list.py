@@ -17,25 +17,45 @@ class Solution:
         second = slow.next
         slow.next = None
 
-        node = second
-        prev = None
+        # 1 -> 2 -> 3 -> 4 -> null
+        # curr = 1, slow = 3, fast = null
+
+        # second = 4 -> null
+        # slow = 1 -> 2 -> 3 -> null
+
+        node = second # 4 -> null
+        prev = None # null
         while node:
-            nxt = node.next
+            nxt = node.next # 
             node.next = prev
             prev = node
             node = nxt
 
         list1 = head
         list2 = prev
-        
-        while list2:
-            nxt1, nxt2 = list1.next, list2.next
 
-            list1.next = list2
-            list2.next = nxt1
+        # list1: 1 → 2 → 3 → null
+        # list2: 5 → 4 → null
+
+        while list2:
+            nxt1 = list1.next # 2 -> 3 -> null
+            nxt2 = list2.next # 4 -> null
+
+            list1.next = list2 # 1 -> 5 -> 2 -> 3 -> nul
+            list2.next = nxt1 # 5 -> 2 -> 3 -> nul
 
             list1 = nxt1
             list2 = nxt2
+
+        # 1 -> 2 -> 3 -> 4 -> null
+        # curr = 1, slow = 1, fast = 1
+
+        # 1 -> 2 -> 3 -> 4 -> null
+        # curr = 1, slow = 2, fast = 3
+
+
+
+        # 
         
 
 
