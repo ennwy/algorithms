@@ -7,9 +7,5 @@ class Solution:
             while stack and n > stack[-1]:
                 nextg[stack.pop()] = n
             stack.append(n)
-
-        res = []
-        for n in nums1:
-            res.append(nextg.get(n, -1))
         
-        return res
+        return [nextg.get(n, -1) for n in nums1]
