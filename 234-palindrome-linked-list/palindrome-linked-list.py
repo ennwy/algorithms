@@ -8,7 +8,6 @@ class Solution:
         fast, slow = head, head
 
         prev = None
-
         while fast and fast.next:
             fast = fast.next.next
 
@@ -20,12 +19,11 @@ class Solution:
         if fast:
             slow = slow.next
 
-        left, right = prev, slow
-        while right:
-            if left.val != right.val:
+        while slow:
+            if prev.val != slow.val:
                 return False
-            left = left.next
-            right = right.next
+            prev = prev.next
+            slow = slow.next
 
         return True
         
