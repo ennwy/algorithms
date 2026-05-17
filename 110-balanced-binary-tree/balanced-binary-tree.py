@@ -6,8 +6,6 @@
 #         self.right = right
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        res = True
-
         def depth(node) -> int:
             if not node:
                 return 0
@@ -15,12 +13,28 @@ class Solution:
             l = depth(node.left)
             r = depth(node.right)
 
-            if abs(l - r) > 1:
-                nonlocal res
-                res = False
+            if l == -1 or r == -1 or abs(l - r) > 1:
+                return -1
 
             return 1 + max(l, r)
         
-        depth(root)
+        return depth(root) != -1
+    # def isBalanced(self, root: Optional[TreeNode]) -> bool:
+    #     res = True
 
-        return res
+    #     def depth(node) -> int:
+    #         if not node:
+    #             return 0
+            
+    #         l = depth(node.left)
+    #         r = depth(node.right)
+
+    #         if abs(l - r) > 1:
+    #             nonlocal res
+    #             res = False
+
+    #         return 1 + max(l, r)
+        
+    #     depth(root)
+
+    #     return res
