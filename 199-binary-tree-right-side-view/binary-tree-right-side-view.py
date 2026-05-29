@@ -7,23 +7,19 @@
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         view = []
-        maxdepth = 0
 
         def rightTraverse(node: Optional[TreeNode], depth) -> int:
             if not node:
                 return
             
-            nonlocal maxdepth
-            if depth > maxdepth:
-                nonlocal view
+            if depth > len(view):
                 view.append(node.val)
-                maxdepth = depth
             
             rightTraverse(node.right, depth+1)
             rightTraverse(node.left, depth+1)
         
         rightTraverse(root, 1)
-        
+
         return view
 
 
