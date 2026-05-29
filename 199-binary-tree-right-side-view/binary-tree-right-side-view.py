@@ -12,13 +12,13 @@ class Solution:
             if not node:
                 return
             
-            if depth > len(view):
+            if depth >= len(view):
                 view.append(node.val)
             
             rightTraverse(node.right, depth+1)
             rightTraverse(node.left, depth+1)
         
-        rightTraverse(root, 1)
+        rightTraverse(root, 0)
 
         return view
 
