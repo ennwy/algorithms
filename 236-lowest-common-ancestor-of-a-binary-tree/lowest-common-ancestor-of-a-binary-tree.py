@@ -7,27 +7,21 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        res = None
-
-        def found(node: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> bool: # node = 3, p = 5, q = 1
-            if not node:
-                return False
-  
-            left = found(node.left, p, q)
-            right = found(node.right, p, q)
-
-            curr = (node == p or node == q)
-
-            if (left and right) or ((left or right) and curr):
-                nonlocal res
-                res = node
-                return True
-            
-            return left or right or curr
+        if not root:
+            return None
         
-        found(root, p, q)
+        if root == q or root == p:
+            return root
+        
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
 
-        return res
+        if left and right:
+            return root
+        
+        if left:
+            return left
+        
+        return right
 
         
-            
