@@ -5,16 +5,13 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def validateSubtree(node, minv, maxv) -> bool:
-            if not node:
-                return True
-            
-            if not (minv < node.val < maxv):
-                return False
-            
-            return validateSubtree(node.left, minv, node.val) and validateSubtree(node.right, node.val, maxv)
-
-        return validateSubtree(root, float('-inf'), float('inf'))
+    def isValidBST(self, root: Optional[TreeNode], minv=float('-inf'), maxv=float('inf')) -> bool:
+        if not root:
+            return True
+        
+        if not (minv < root.val < maxv):
+            return False
+        
+        return self.isValidBST(root.left, minv, root.val) and self.isValidBST(root.right, root.val, maxv)
 
             
