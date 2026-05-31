@@ -9,11 +9,12 @@ class Solution:
         res = 0
         counter = 0
 
-        def inorder(node: Optional[TreeNode]): # node = 2, 1
+        def inorder(node: Optional[TreeNode]) -> bool:
             if not node: 
-                return
+                return False
 
-            inorder(node.left)
+            if inorder(node.left):
+                return True
 
             nonlocal counter
             
@@ -21,8 +22,9 @@ class Solution:
             if counter == k:
                 nonlocal res
                 res = node.val
+                return True
             
-            inorder(node.right)
+            return inorder(node.right)
 
         inorder(root)
 
