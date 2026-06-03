@@ -24,7 +24,7 @@ class Trie:
                 return False
             node = node.children[c]
 
-        return node.is_word
+        return node and node.is_word
 
     def startsWith(self, prefix: str) -> bool:
         node = self.root
