@@ -8,14 +8,14 @@ class Solution:
         # y = -5, x = 2
  
         while stones:
-            y = -heappop(stones)
+            y = heappop(stones)
             if not stones:
-                return y
+                return -y
 
-            x = -heappop(stones)
+            x = heappop(stones)
 
-            if y > x:
-                heappush(stones, -(y - x))
+            if x > y:
+                heappush(stones, y - x)
         
         return 0
 
