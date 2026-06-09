@@ -3,7 +3,10 @@ class Solution:
         heap = []
 
         for x, y in points:
-            heappush(heap, (x*x + y*y, (x,y)))
+            if len(heap) < k:
+                heappush(heap, (-x*x-y*y, (x,y)))
+            elif -heap[0][0] > x*x+y*y:
+                heapreplace(heap, (-x*x-y*y, (x,y)))
         
         res = []
         while len(res) < k:
