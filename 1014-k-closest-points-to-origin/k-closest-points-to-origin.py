@@ -8,8 +8,5 @@ class Solution:
             elif -heap[0][0] > x*x+y*y:
                 heapreplace(heap, (-x*x-y*y, (x,y)))
         
-        res = []
-        while len(res) < k:
-            res.append(heappop(heap)[1])
 
-        return res
+        return [heap[i][1] for i in range(k)]
