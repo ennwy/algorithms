@@ -3,10 +3,10 @@ class Solution:
         heap = []
 
         for x, y in points:
-            if len(heap) < k:
-                heappush(heap, (-x*x-y*y, (x,y)))
-            elif -heap[0][0] > x*x+y*y:
-                heapreplace(heap, (-x*x-y*y, (x,y)))
+            heappush(heap, (x*x+y*y, (x,y)))
         
+        res = []
+        while len(res) < k:
+            res.append(heappop(heap)[1])
 
-        return [heap[i][1] for i in range(k)]
+        return res
