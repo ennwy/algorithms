@@ -4,13 +4,13 @@ class Solution:
 
         for y in range(len(grid)):
             for x in range(len(grid[0])):
-                if grid[y][x] == 0:
-                    continue
-    
-                res += y == 0 or grid[y-1][x] == 0
-                res += x == 0 or grid[y][x-1] == 0
-                res += y == len(grid) - 1 or grid[y+1][x] == 0
-                res += x == len(grid[0]) - 1 or grid[y][x+1] == 0
+                if grid[y][x]:
+                    res += 4
+
+                    if y and grid[y-1][x]:
+                        res -= 2
+                    if x and grid[y][x-1]:
+                        res -= 2
                 
         return res
                 
