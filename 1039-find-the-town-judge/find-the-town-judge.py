@@ -1,11 +1,10 @@
 class Solution:
     def findJudge(self, n: int, trust: List[List[int]]) -> int:
-        trusts = defaultdict(list)
+        trusts = defaultdict(int)
         trusted = defaultdict(int)
 
-
         for a, b in trust: 
-            trusts[a].append(b)
+            trusts[a] += 1
             trusted[b] += 1
 
         for label in range(1, n+1):
