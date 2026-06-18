@@ -3,40 +3,28 @@ class Solution:
         rows, cols = len(grid), len(grid[0])
 
         q = deque()
-        visited = set()
-        freshcount = 0
+        fresh = 0
         
         for r in range(rows):
             for c in range(cols):
                 if grid[r][c] == 2:
                     q.append((r, c))
-                
-                if grid[r][c] == 1:
-                    freshcount +=1
-        
-        def rotOrange(r: int, c: int) -> bool:
-            if r < 0 or r >= rows or c < 0 or c >= cols or (r, c) in visited or grid[r][c] != 1: 
-                return False
-            
-            visited.add((r,c))
-            q.append((r,c))
-
-            return True
-
+                elif grid[r][c] == 1:
+                    fresh +=1
+    
         t = 0
-        while q:
-            for i in range(len(q)):
+        while q and fresh > 0:
+            for _ in range(len(q)):
                 r, c = q.popleft()
-                grid[r][c] = 2
 
-                rotOrange(r+1, c)
-                rotOrange(r-1, c)
-                rotOrange(r, c+1)
-                rotOrange(r, c-1)
+                for dr, dc in ((1,0),(-1,0),(0,-1),(0,1)):
+                    cr, cc = r + dr, c + dc
+
+                    if 0 <= cr < rows and 0 <= cc < cols and grid[cr][cc] == 1: 
+                        fresh -= 1
+                        grid[cr][cc] = 2
+                        q.append((cr,cc))     
             t += 1
 
-        if len(visited) < freshcount:
-            return -1
-
-        return max(t - 1, 0)
+        return t if fresh == 0 else -1
         
