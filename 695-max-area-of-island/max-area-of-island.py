@@ -1,12 +1,10 @@
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[str]]) -> int:
-        visited = set()
-
         def area(r, c) -> int:
-            if r >= len(grid) or r < 0 or c >= len(grid[0]) or c < 0 or grid[r][c] == 0 or (r, c) in visited:
+            if r >= len(grid) or r < 0 or c >= len(grid[0]) or c < 0 or grid[r][c] == 0:
                 return 0
             
-            visited.add((r, c))
+            grid[r][c] = 0
 
             return 1 + area(r + 1, c) + area(r - 1, c) + area(r, c + 1) + area(r, c - 1)
         
