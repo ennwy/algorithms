@@ -1,31 +1,25 @@
 class Solution:
     def addStrings(self, num1: str, num2: str) -> str:
-        res = [0] * (max(len(num1), len(num2)) + 1) # [0 1 3 1]
-        d = len(res) - 1 # 1
+        ORD_ZERO = ord('0')
+        out = []
+        i, j = len(num1) - 1, len(num2) - 1
+        total, carry = 0, 0
+
+        while i >= 0 or j >= 0 or carry:
+            total = carry
+
+            if i >= 0:
+                total += ord(num1[i]) - ORD_ZERO
+                i -= 1
+            if j >= 0:
+                total += ord(num2[j]) - ORD_ZERO
+                j -= 1
+            
+            carry = 0
+            if total > 9:
+                total -= 10
+                carry = 1
+            
+            out.append(str(total))
         
-        d1 = len(num1) - 1 # -1
-        d2 = len(num2) - 1 # -1
-
-        while d1 >= 0 or d2 >= 0:
-            if d1 >= 0:
-                res[d] += ord(num1[d1]) - ord('0')
-                d1 -= 1
-
-            if d2 >= 0:
-                res[d] += ord(num2[d2]) - ord('0')
-                d2 -= 1
-        
-            if res[d] > 9:
-                res[d] -= 10
-                res[d - 1] += 1
-
-            d -= 1
-
-        resStr = ""
-        for n in res:
-            resStr += str(n)
-
-        if resStr[0] == "0":
-            return resStr[1:]
-        
-        return resStr
+        return "".join(reversed(out))
