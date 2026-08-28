@@ -5,20 +5,19 @@ class Solution:
         
         d1 = len(num1) - 1 # -1
         d2 = len(num2) - 1 # -1
-    ## sum 
+
         while d1 >= 0 or d2 >= 0:
             if d1 >= 0:
-                res[d] += int(num1[d1])
+                res[d] += ord(num1[d1]) - ord('0')
                 d1 -= 1
 
             if d2 >= 0:
-                res[d] += int(num2[d2])
+                res[d] += ord(num2[d2]) - ord('0')
                 d2 -= 1
         
             if res[d] > 9:
                 res[d] -= 10
                 res[d - 1] += 1
-                # resStr[0] = str(sum)
 
             d -= 1
 
