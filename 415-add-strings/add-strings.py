@@ -15,11 +15,8 @@ class Solution:
                 total += ord(num2[j]) - ORD_ZERO
                 j -= 1
             
-            carry = 0
-            if total > 9:
-                total -= 10
-                carry = 1
+            carry, digit = divmod(total, 10)
             
-            out.append(str(total))
+            out.append(str(digit))
         
         return "".join(reversed(out))
