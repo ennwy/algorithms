@@ -2,8 +2,6 @@ class Solution:
     def carFleet(self, target: int, positions: List[int], speeds: List[int]) -> int:
         cars = sorted(zip(positions, speeds), reverse=True)
 
-        print(cars)
-
         fleets = 0
         prevtime = -1
         for pos, speed in cars:
