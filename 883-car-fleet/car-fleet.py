@@ -3,13 +3,13 @@ class Solution:
         cars = sorted(zip(positions, speeds), reverse=True)
 
         fleets = 0
-        prevtime = -1
+        maxtime = 0
         for pos, speed in cars:
             time = (target - pos) / speed
 
-            if time > prevtime:
+            if time > maxtime:
                 fleets += 1
-                prevtime = time
+                maxtime = time
 
         return fleets
 
