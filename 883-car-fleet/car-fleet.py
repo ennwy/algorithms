@@ -1,16 +1,21 @@
 class Solution:
-    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
-        ps = sorted(zip(position, speed))[::-1]
+    def carFleet(self, target: int, positions: List[int], speeds: List[int]) -> int:
+        cars = sorted(zip(positions, speeds), reverse=True)
+
+        print(cars)
+
         fleets = 0
-        prev_t = float('-inf')
+        prevtime = -1
+        for pos, speed in cars:
+            time = (target - pos) / speed
 
-        for p, s in ps:
-            t = (target - p) / s
-
-            if t > prev_t:
+            if time > prevtime:
                 fleets += 1
-                prev_t = t
+                prevtime = time
 
         return fleets
-            
-            
+
+
+
+
+
