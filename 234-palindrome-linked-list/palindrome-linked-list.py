@@ -4,44 +4,29 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        fast, slow = head, head
+    def isPalindrome(self, head) -> bool:
+        slow, fast = head, head # 
 
-        prev = None
         while fast and fast.next:
-            fast = fast.next.next
+            slow = slow.next # 1
+            fast = fast.next.next # null
 
-            nxt = slow.next
-            slow.next = prev
-            prev = slow
-            slow = nxt
-        
-        if fast:
-            slow = slow.next
+        cur = slow # 1 -> 2 -> 3 -> null
+        prev = None
 
-        while slow:
-            if prev.val != slow.val:
+        while cur:
+            nextNode = cur.next # null
+            cur.next = prev # 3 -> 2 -> 1
+            prev = cur # 3 -> 2 -> 1
+            cur = nextNode # null
+
+        start, mid = head, prev
+        while mid:
+            if start.val != mid.val:
                 return False
-            prev = prev.next
-            slow = slow.next
+
+            start = start.next
+            mid = mid.next
 
         return True
-        
-        
-    # def isPalindrome(self, head: Optional[ListNode]) -> bool:
-    #     nums = []
 
-    #     node = head
-    #     while node:
-    #         nums.append(node.val)
-    #         node = node.next
-        
-    #     i, j = 0, len(nums) - 1
-    #     while i < j:
-    #         if nums[i] != nums[j]:
-    #             return False
-
-    #         i += 1
-    #         j -= 1
-            
-    #     return True
