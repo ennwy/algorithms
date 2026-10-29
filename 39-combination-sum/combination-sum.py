@@ -11,11 +11,11 @@ class Solution:
             elif total > target or idx >= len(candidates):
                 return
             
-            make_combination(idx+1, comb, total)
             comb.append(candidates[idx])
             make_combination(idx, comb, total+candidates[idx])
             comb.pop()
-            
+            make_combination(idx+1, comb, total)
+
         make_combination(0, [], 0)
 
         return res
